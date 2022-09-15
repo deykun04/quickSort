@@ -3,34 +3,34 @@
 #include <ctime>
 
 
-void swap (std::vector<int>& array, int a, int b)
+void swap (std::vector<int>& array, int a, int b) // swap elements in vector
 {
     int temp = array[a];
     array [a] = array[b];
     array[b] = temp;
 }
-int Partition (std::vector<int>& array, int minElement, int maxElement)
+int Partition (std::vector<int>& array, int minElement, int maxElement)  // get pivot index
 {
-    int i = minElement-1;
-    int pivot = array[maxElement];
-    for(size_t j = minElement; j < maxElement; j++)
+    int i = minElement-1;    // i iterator 
+    int pivot = array[maxElement]; 
+    for(size_t j = minElement; j < maxElement; j++) 
     {
         if (array[j] < pivot)
         {
             i++;
-            swap(array,i,j);
+            swap(array,i,j); //swap i and j elements
         }
     }
-    swap(array,i+1,maxElement);
+    swap(array,i+1,maxElement); //swap i+1 element and last elem
     return i+1;
 }
 void QuickSort(std::vector<int>& array, int minElement, int maxElement)
 {
     if (minElement < maxElement)
     {
-         int pivotIndex =  Partition(array,minElement,maxElement);
-         QuickSort (array, minElement, pivotIndex-1 );
-         QuickSort (array, pivotIndex+1, maxElement);
+         int pivotIndex =  Partition(array,minElement,maxElement); // get pivotIndex
+         QuickSort (array, minElement, pivotIndex-1 ); // start sort in left part
+         QuickSort (array, pivotIndex+1, maxElement); // start sort in right part
 
     }
 }
